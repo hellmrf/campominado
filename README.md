@@ -1,5 +1,5 @@
 # Campo Minado
-Clássico Campo Minado implementado em Javascript.
+The classic Mine Sweeper implemented in Javascript.
 
 ## How to use
 1. Clone or download `minesweeper.js` and include it in your HTML;
