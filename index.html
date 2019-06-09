@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta property="og:title" content="Campo Minado">
+    <meta property="og:site_name" content="Héliton Martins">
+    <meta property="og:url" content="http://heliton.ml/minesweeper">
+    <meta property="og:description" content="O clássico jogo de Campo Minado repaginado.">
+    <meta property="og:type" content="profile">
+    <meta property="og:image" content="http://heliton.ml/helitonmartins2.jpg">
+    <meta name="title" content="Campo Minado">
+    <meta name="description" content="Héliton Martins é graduando em Química pela UFMG, técnico em Química pelo CEFET-MG e programador autodidata. Trabalha com Química Computacional (QSAR)">
+    <meta name="keywords" content="Héliton Martins, Campo Minado, Minesweeper, jogo de bombas">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="Portuguese">
+    <meta name="author" content="Héliton Martins">
+    <title>Campo Minado</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <section class="container">
+        <h1>Campo Minado</h1>
+        <h3>Escolha seu nível.</h3>
+        <div id="level_selector">
+            <p class="level"><a href="javascript:setLevel('easy')">Fácil</a></p>
+            <p class="level"><a href="javascript:setLevel('medium')">Médio</a></p>
+            <p class="level"><a href="javascript:setLevel('hard')">Difícil</a></p>
+            <p class="level"><a href="javascript:setLevel('custom')">Personalizado</a></p>
+            <form id="form" style="display:none;">
+                <label for="width">Largura: </label>
+                <input type="number" id="width" value="30" />
+                <label for="height">Altura:</label>
+                <input type="number" id="height" value="15" />
+                <label for="bombs">Bombas:</label>
+                <input type="number" id="bombs" value="99" />
+                <input type="submit" id='start' value='Start!' />
+            </form>
+        </div>
+        <div id="howto_button"><a href='javascript:howto()'>Como Jogar?</a></div>
+        <article id="howto">
+            <p>Ao escolher seu nível de dificuldade, você verá um campo com várias células.</p>
+            <p>Neste campo, estão escondidas algumas bombas (veja no quadro inferior direito do tabuleiro). Seu objetivo é revelar todos os quadrados sem revelar nenhuma bomba. Para revelar uma casa, clique (ou toque) sobre ela.</p>
+            <p>Para isso, esteja atento aos números revelados. Por exemplo, uma casa com o número 3 indica que, nas 8 casas em volta dela, existem <em>exatamente</em> 3 bombas. Se uma casa possuir o número 1, existe apenas uma bomba na sua vizinhança.</p>
+            <table>
+                <tr>
+                    <td>☼</td>
+                    <td>☼</td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td class='open'>3</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>1</td>
+                    <td>☼</td>
+                </tr>
+            </table>
+            <!-- <p>Quando você abrir uma casa vazia (que, portanto, não tem nenhuma bomba em sua vizinhança), suas vizinhas também se abrirão automaticamente.</p> -->
+            <p>Preste atenção a padrões como a seguir, onde fica fácil saber onde tem uma bomba (o número 1 da linha 3 e coluna 2 tem, em sua vizinhança, apenas uma casa coberta).</p>
+            <table>
+                <tr>
+                    <td>☼</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class='open'>2</td>
+                    <td class='open'>2</td>
+                    <td>☼</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class='open'></td>
+                    <td class='open'>1</td>
+                    <td class='open'>2</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class='open'></td>
+                    <td class='open'></td>
+                    <td class='open'>1</td>
+                    <td>☼</td>
+                </tr>
+            </table>
+            <p>Sempre que identificar uma casa na qual você acredita ter uma bomba, clique com o botão direito sobre ela (ou dê um toque longo), marcando uma bandeira.</p>
+            <p>Caso ainda esteja em dúvida, clique novamente para converter a bandeira em interrogação. Um terceiro clique remove a marcação e reabilita a casa a ser clicada.</p>
+            <table>
+                <tr>
+                    <td>⍰</td>
+                    <td>⍰</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class='open'>2</td>
+                    <td class='open'>2</td>
+                    <td>⚐</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class='open'></td>
+                    <td class='open'>1</td>
+                    <td class='open'>2</td>
+                    <td>⍰</td>
+                </tr>
+                <tr>
+                    <td class='open'></td>
+                    <td class='open'></td>
+                    <td class='open'>1</td>
+                    <td>⍰</td>
+                </tr>
+            </table>
+        </article>
+        <table id="minesweeper"></table>
+        <div id="panel"><div id="panel_clock">0:00</div><div id="panel_bombs">–</div></div>
+    </section>
+    <footer>Desenvolvido por <a href="http://heliton.ml/" target="_blank">Héliton Martins</a>.</footer>
+</body>
+<script src="./minesweeper.js"></script>
+<script src="./index.js"></script>
+</html>
